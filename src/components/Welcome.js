@@ -18,6 +18,8 @@ export default function Welcome() {
             alt="logo"
             style={{
               display: "block",
+              width: "100%",
+              height: "auto",
               marginLeft: "auto",
               marginRight: "auto",
             }}

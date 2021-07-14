@@ -1,13 +1,16 @@
+import { useAuth } from "../contexts/AuthContext";
+import { Layout } from "antd";
 import Dashboard from "./Dashboard";
 import Sidebar from "./Sidebar";
 import UpdateProfile from "./UpdateProfile";
 import MyReservations from "./MyReservations";
-import { Layout } from "antd";
 import useLocalStorage from "../useLocalStorage";
-import { useAuth } from "../contexts/AuthContext";
+import { BrowserRouter as Switch, Route, useRouteMatch } from "react-router-dom";
+
 
 
 const Main = () => {
+  let { path, url } = useRouteMatch();
   const { Header, Content, Footer } = Layout;
   //navigation state is stored in local storage so it persists through reloads
   //navigation state is managed by the Sidebar component
@@ -20,7 +23,7 @@ const Main = () => {
       </Header>
       <Layout>
         <Sidebar setNavState={setNavState} />
-        <Content style={{ paddingTop: 20, paddingLeft: 20, minHeight: "85vh" }}>
+        <Content style={{ minHeight: "85vh" }}>
           {navState === "mainpage" && <Dashboard />}
           {navState === "reservations" && <MyReservations />}
           {navState === "profile" && <UpdateProfile />}

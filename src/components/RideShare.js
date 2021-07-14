@@ -3,10 +3,8 @@ import Welcome from "./Welcome";
 import PrivateRoute from "./PrivateRoute";
 import NotFound from "./NotFound";
 import Main from "./Main";
-// import { useAuth } from "../contexts/AuthContext"
 
 const RideShare = () => {
-  // const { currentUser } = useAuth()
   return (
     <>
       <Router>
