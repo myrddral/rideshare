@@ -19,6 +19,7 @@ export default function Welcome() {
             style={{
               display: "block",
               width: "100%",
+              maxWidth: 320,
               height: "auto",
               marginLeft: "auto",
               marginRight: "auto",
