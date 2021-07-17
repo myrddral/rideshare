@@ -1,21 +1,24 @@
-// import useFetch from "../useFetch";
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import { Row, Col } from "antd";
-import { Table, Tag, Space } from "antd";
+import { Table, Tag } from "antd";
+import { Link } from "react-router-dom";
 
-const RidesTable = () => {
-  // const { data: events } = useFetch(
-  //   "https://api.chucknorris.io/jokes/categories"
-  // );
+const EventsTable = (props) => {
+  const { events } = props;
 
-  // console.log(events);
+  const data = events.data.map((event, i) => ({
+    key: i,
+    name: `${event.id}@@@${event.name}`,
+    date: event.date,
+    address: event.location,
+    tags: event.tags.map((tag) => tag),
+  }));
 
   const columns = [
     {
       title: "Esemény",
       dataIndex: "name",
       key: "name",
-      render: (text) => <a>{text}</a>,
+      render: (text) => <Link to={'/events/'+text.split('@@@')[0]}>{text.split('@@@')[1]}</Link>,
     },
     {
       title: "Dátum",
@@ -62,37 +65,15 @@ const RidesTable = () => {
     // },
   ];
 
-  const data = [
-    {
-      key: "1",
-      name: "CSCS Gathering 2021",
-      date: "2021. Augusztus 12 - 15.",
-      address: "Pécsbagota - Álmosvölgy",
-      tags: ["fesztivál", "elektronikus zene"],
-    },
-    {
-      key: "2",
-      name: "DAAD Gathering",
-      date: "2021. Augusztus 6 - 8.",
-      address: "Dádpuszta",
-      tags: ["fesztivál", "elektronikus zene", "világzene"],
-    },
-    {
-      key: "3",
-      name: "Lucid Dream Theathre 2021",
-      date: "2021. Szeptember 3 - 5.",
-      address: "Pusztaszínház",
-      tags: ["fesztivál", "elektronikus zene"],
-    },
-  ];
-
   return (
     <>
       <Row>
-        <Col span={24} >
+        <Col span={24}>
           <Table
             columns={columns}
             dataSource={data}
+            //pagination is not where it supposed to - check API
+            pagination = {{ position: "bottomCenter" }}
             style={{ width: "100%" }}
           />
         </Col>
@@ -101,4 +82,4 @@ const RidesTable = () => {
   );
 };
 
-export default RidesTable;
+export default EventsTable;

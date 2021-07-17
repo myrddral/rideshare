@@ -1,16 +1,20 @@
-import {HomeOutlined, UserOutlined, LogoutOutlined, CarOutlined } from "@ant-design/icons";
+import {
+  HomeOutlined,
+  UserOutlined,
+  LogoutOutlined,
+  CarOutlined,
+} from "@ant-design/icons";
 import { useAuth } from "../contexts/AuthContext";
-import { useHistory } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 import { useState } from "react";
 import { Layout, Menu } from "antd";
 const { Sider } = Layout;
 
 const Sidebar = (props) => {
-  const { setNavState } = props
   const [error, setError] = useState("");
   const { logout } = useAuth();
   const history = useHistory();
-  
+
   const handleLogout = async () => {
     setError("");
 
@@ -19,7 +23,7 @@ const Sidebar = (props) => {
       history.push("/login");
     } catch {
       setError("Sikertelen kijelentkezés");
-      console.log(`Error: ${error}`)
+      console.log(`Error: ${error}`);
     }
   };
   return (
@@ -36,10 +40,33 @@ const Sidebar = (props) => {
       >
         <div className="logo" />
         <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
-          <Menu.Item  onClick={() => setNavState("mainpage")} key="1" icon={<HomeOutlined />}>Főoldal</Menu.Item>
-          <Menu.Item  onClick={() => setNavState("reservations")} key="2" icon={<CarOutlined />}>Foglalásaim</Menu.Item>
-          <Menu.Item  onClick={() => setNavState("profile")} key="3" icon={<UserOutlined />}>Profilom</Menu.Item>
-          <Menu.Item onClick={handleLogout} key="4" icon={<LogoutOutlined />}>Kijelentkezés</Menu.Item>
+          <Menu.Item
+            key="1"
+            icon={<HomeOutlined />}
+          >
+            <NavLink to="/" className="nav-text">
+              Főoldal
+            </NavLink>
+          </Menu.Item>
+          <Menu.Item
+            key="2"
+            icon={<CarOutlined />}
+          >
+            <NavLink to="/reservations" className="nav-text">
+              Foglalásaim
+            </NavLink>
+          </Menu.Item>
+          <Menu.Item
+            key="3"
+            icon={<UserOutlined />}
+          >
+            <NavLink to="/profile" className="nav-text">
+              Profilom
+            </NavLink>
+          </Menu.Item>
+          <Menu.Item onClick={handleLogout} key="4" icon={<LogoutOutlined />}>
+            Kijelentkezés
+          </Menu.Item>
         </Menu>
       </Sider>
     </>
