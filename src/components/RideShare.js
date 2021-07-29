@@ -9,6 +9,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { Layout } from "antd";
 import Sidebar from "./Sidebar";
 import EventDetails from "./EventDetails";
+import Logo from "../assets/logo.png";
 
 const RideShare = () => {
   const { currentUser } = useAuth();
@@ -19,12 +20,24 @@ const RideShare = () => {
       {currentUser !== null && (
         <Header
           style={{
+            display: "flex",
+            justifyContent: "space-between",
             padding: 0,
+            color: "white",
             paddingLeft: 20,
             paddingRight: 20,
-            textAlign: "right",
           }}
         >
+          <div className="logo" style={{width: 64}}>
+          <img
+            src={Logo}
+            alt="logo"
+            style={{
+              display: "block",
+              padding: "none"
+            }}
+          />
+          </div>
           <div>
             R I D E S H A R E
             <small> - Bejelentkezve, mint: {currentUser.email}</small>

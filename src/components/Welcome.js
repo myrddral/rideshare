@@ -4,7 +4,7 @@ import Signup from "./Signup";
 import ForgotPassword from "./ForgotPassword";
 import { Row, Col } from "antd";
 // import { Alert } from "antd";
-import Logo from "../Logo.png";
+import Logo from "../assets/logo-big.png";
 
 export default function Welcome() {
   const [action, setAction] = useState("login");
@@ -18,6 +18,7 @@ export default function Welcome() {
             alt="logo"
             style={{
               display: "block",
+              color: "white",
               width: "100%",
               maxWidth: 320,
               height: "auto",

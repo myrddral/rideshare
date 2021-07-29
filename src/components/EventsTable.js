@@ -22,7 +22,7 @@ const EventsTable = (props) => {
     },
     {
       title: "Dátum",
-      dataIndex: "date",
+      dataIndex: "date",  
       key: "date",
     },
     {
