@@ -1,15 +1,16 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import { Layout } from "antd";
 import Welcome from "./Welcome";
 import PrivateRoute from "./PrivateRoute";
 import MyReservations from "./MyReservations";
 import UpdateProfile from "./UpdateProfile";
 import NotFound from "./NotFound";
 import Dashboard from "./Dashboard";
-import { useAuth } from "../contexts/AuthContext";
-import { Layout } from "antd";
 import Sidebar from "./Sidebar";
 import EventDetails from "./EventDetails";
 import Logo from "../assets/logo.png";
+import RideDetails from "./RideDetails";
 
 const RideShare = () => {
   const { currentUser } = useAuth();
@@ -52,6 +53,7 @@ const RideShare = () => {
             <PrivateRoute path="/reservations" component={MyReservations} />
             <PrivateRoute path="/profile" component={UpdateProfile} />
             <PrivateRoute path="/events/:id" component={EventDetails} />
+            <PrivateRoute path="/rides/:id" component={RideDetails} />
             <Route path="/login" component={Welcome} />
             <Route path="*" component={NotFound} />
           </Switch>
