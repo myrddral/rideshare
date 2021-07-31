@@ -1,17 +1,13 @@
 import EventsTable from "./EventsTable";
 import useFirestore from "../useFirestore"
+import { Spin } from 'antd';
 
 export default function Dashboard() {
   const events = useFirestore("events")
   const loadingAnimation = (
-    <center>
-      <div className="lds-ring">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    </center>
+    <div className="spinner">
+      <Spin size="large" />
+    </div>
   );
 
   return events.data !== null ? <EventsTable events={events}/> : loadingAnimation;
