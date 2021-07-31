@@ -2,10 +2,12 @@ import { Row, Col } from "antd";
 import { Table, Tag } from "antd";
 import { useEffect, useState } from "react";
 import db from "../db";
+import { Link } from "react-router-dom";
 
 const RidesTable = (props) => {
   const { eventID } = props;
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     db.collection("rides")
@@ -14,34 +16,47 @@ const RidesTable = (props) => {
       .then((querySnapshot) => {
         let temp = [];
         querySnapshot.forEach((doc) => {
-          temp.push(doc.data());
+          temp.push({ id: doc.id, ...doc.data() });
         });
         setData(
           temp.map((ride, i) => ({
             key: i,
-            name: ride.driverNickname,
-            car: ride.carDetails.type,
+            name: `${ride.id}@@@${ride.driverNickname}`,
+            contact: ride.driverContact,
+            email: ride.driverEmail,
+            passengers: ride.passengers,
+            startLocation: ride.startLocation,
+            carType: ride.carDetails.type,
+            carColor: ride.carDetails.color,
+            plateNumber: ride.carDetails.plateNumber,
             space: ride.maxSpace,
             tags: ride.tags.map((tag) => tag),
           }))
         );
+        setIsLoading(false);
       })
       .catch((error) => {
         console.log("Error getting documents: ", error);
       });
   }, [eventID]);
 
+  console.log(data);
+
   const columns = [
     {
       title: "Sofőr",
       dataIndex: "name",
       key: "name",
-      render: (text) => text,
+      render: (text) => (
+        <Link to={"/rides/" + text.split("@@@")[0]}>
+          {text.split("@@@")[1]}
+        </Link>
+      ),
     },
     {
       title: "Jármű",
-      dataIndex: "car",
-      key: "car",
+      dataIndex: "carType",
+      key: "carType",
     },
     {
       title: "Szabad helyek száma",
@@ -93,6 +108,7 @@ const RidesTable = (props) => {
           <Table
             columns={columns}
             dataSource={data}
+            loading={isLoading}
             //pagination is not where it supposed to - check API
             pagination={{ position: "bottomCenter" }}
             style={{ width: "100%" }}
