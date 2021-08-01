@@ -9,7 +9,7 @@ import NotFound from "./NotFound";
 import Dashboard from "./Dashboard";
 import Sidebar from "./Sidebar";
 import EventDetails from "./EventDetails";
-import Logo from "../assets/logo.png";
+import Logo from "../assets/logo-text.png";
 import RideDetails from "./RideDetails";
 
 const RideShare = () => {
@@ -29,19 +29,18 @@ const RideShare = () => {
             paddingRight: 20,
           }}
         >
-          <div className="logo" style={{width: 64}}>
+          <div className="logo">
           <img
             src={Logo}
             alt="logo"
             style={{
-              display: "block",
-              padding: "none"
+              width: 350,
+              display: "block"
             }}
           />
           </div>
           <div>
-            R I D E S H A R E
-            <small> - Bejelentkezve, mint: {currentUser.email}</small>
+            <small> Bejelentkezve, mint: {currentUser.email}</small>
           </div>
         </Header>
       )}
