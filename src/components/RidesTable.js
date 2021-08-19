@@ -27,10 +27,8 @@ const RidesTable = (props) => {
             contact: ride.driverContact,
             email: ride.driverEmail,
             passengers: ride.passengers,
-            startLocation: `${ride.start.city} - ${ride.start.location}`,
-            startTime: `${new Date(
-              ride.startTime.seconds * 1000
-            ).toLocaleString("hu-HU")}`,
+            // startLocation: `${ride.start.city} - ${ride.start.location}`,
+            start: `${ride.start.city}@@@${new Date(ride.startTime.seconds * 1000).toLocaleString("hu-HU")}`,
             carType: ride.carDetails.type,
             carColor: ride.carDetails.color,
             plateNumber: ride.carDetails.plateNumber,
@@ -48,28 +46,27 @@ const RidesTable = (props) => {
 
   const columns = [
     {
-      title: "Indulás ideje",
-      dataIndex: "startTime",
-      key: "startTime",
-    },
-    {
-      title: "Indulás helyszíne",
-      dataIndex: "startLocation",
-      key: "startLocation",
+      title: "Indulás",
+      dataIndex: "start",
+      key: "start",
+      render: (text) => <><p>{text.split("@@@")[0]}</p>
+      <p>{text.split("@@@")[1]}</p></>
     },
     {
       title: "Sofőr",
       dataIndex: "name",
       key: "name",
-      render: (text) => text.split("@@@")[1],
+      responsive: ['sm'],
+      render: (text) => text.split("@@@")[1]
     },
     {
       title: "Jármű",
       dataIndex: "carType",
       key: "carType",
+      responsive: ['sm'],
     },
     {
-      title: "Szabad helyek száma",
+      title: "Helyek",
       dataIndex: "space",
       key: "address",
     },
@@ -82,6 +79,7 @@ const RidesTable = (props) => {
       title: "Címkék",
       key: "tags",
       dataIndex: "tags",
+      responsive: ['md'],
       render: (tags) => (
         <>
           {tags.map((tag) => {
@@ -150,17 +148,17 @@ const RidesTable = (props) => {
                 onClick: (event) => {
                   history.push(`/rides/${record.name.split("@@@")[0]}`);
                 }, // click row
-                onDoubleClick: (event) => {}, // double click row
-                onContextMenu: (event) => {}, // right button click row
-                onMouseEnter: (event) => {}, // mouse enter row
-                onMouseLeave: (event) => {}, // mouse leave row
+                // onDoubleClick: (event) => {}, // double click row
+                // onContextMenu: (event) => {}, // right button click row
+                // onMouseEnter: (event) => {}, // mouse enter row
+                // onMouseLeave: (event) => {}, // mouse leave row
               };
             }}
             columns={columns}
             dataSource={data}
             loading={isLoading}
             //pagination is not where it supposed to - check API
-            pagination={{ position: "bottomCenter" }}
+            pagination={{ position: ["none", "bottomCenter"] }}
             style={{ width: "100%" }}
           />
         </Col>

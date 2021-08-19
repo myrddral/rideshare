@@ -11,8 +11,6 @@ import {
 
 const Main = () => {
   const { Header, Content, Footer } = Layout;
-  //navigation state is stored in local storage so it persists through reloads
-  //navigation state is managed by the Sidebar component
   const { currentUser } = useAuth();
   return (
     <>

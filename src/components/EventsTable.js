@@ -29,11 +29,13 @@ const EventsTable = (props) => {
       title: "Helyszín",
       dataIndex: "address",
       key: "address",
+      responsive: ['sm'],
     },
     {
       title: "Címkék",
       key: "tags",
       dataIndex: "tags",
+      responsive: ['sm'],
       render: (tags) => (
         <>
           {tags.map((tag) => {
@@ -72,9 +74,7 @@ const EventsTable = (props) => {
           <Table
             columns={columns}
             dataSource={data}
-            //pagination is not where it supposed to - check API
-            pagination = {{ position: "bottomCenter" }}
-            style={{ width: "100%" }}
+            pagination={{ position: ["none", "bottomCenter"] }}
           />
         </Col>
       </Row>
