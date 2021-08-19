@@ -19,8 +19,8 @@ export default function Login() {
       history.push("/");
     } catch (e) {
       setError(`Sikertelen bejelentkezés: ${e.message}`);
+      setLoading(false);
     }
-    
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -29,7 +29,7 @@ export default function Login() {
 
   return (
     <>
-      {error && <Alert message={error} type="warning" />}
+      {error && <Alert style={{ maxWidth: 300, margin: "auto", marginBottom: 25 }} message={error} type="warning" />}
       <Form
         style={{ maxWidth: 300, margin: "auto" }}
         name="normal_login"
