@@ -7,23 +7,18 @@ const EventsTable = (props) => {
 
   const data = events.data.map((event, i) => ({
     key: i,
-    name: `${event.id}@@@${event.name}`,
-    date: event.date,
+    name: `${event.id}@@@${event.name}@@@${event.date}`,
     address: event.location,
     tags: event.tags.map((tag) => tag),
   }));
 
   const columns = [
     {
-      title: "Esemény",
+      title: "Események",
       dataIndex: "name",
       key: "name",
-      render: (text) => <Link to={'/events/'+text.split('@@@')[0]}>{text.split('@@@')[1]}</Link>,
-    },
-    {
-      title: "Dátum",
-      dataIndex: "date",  
-      key: "date",
+      render: (text) => <><Link to={'/events/'+text.split('@@@')[0]}>{text.split('@@@')[1]}</Link>
+      <p>{text.split('@@@')[2]}</p></>,
     },
     {
       title: "Helyszín",
@@ -39,7 +34,9 @@ const EventsTable = (props) => {
       render: (tags) => (
         <>
           {tags.map((tag) => {
-            let color = tag.length > 5 ? "geekblue" : "green";
+            let color = "geekblue";
+            if (tag === "elektronikus zene") {
+            }
             if (tag === "fesztivál") {
               color = "green";
             }

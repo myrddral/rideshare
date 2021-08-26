@@ -37,7 +37,7 @@ const RideShare = () => {
       )}
       <Layout>
         {currentUser !== null && <Sidebar />}
-        <Content style={{paddingTop: 20}}>
+        <Content>
           <Switch>
             <PrivateRoute exact path="/" component={Dashboard} />
             <PrivateRoute path="/reservations" component={MyReservations} />
