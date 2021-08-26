@@ -1,5 +1,5 @@
-import { Calendar, Form, TimePicker, Button } from "antd";
 import { RightOutlined } from "@ant-design/icons";
+import { Form, Button, Input } from "antd";
 
 const formItemLayout = {
   labelCol: {
@@ -19,32 +19,19 @@ const formItemLayout = {
     },
   },
 };
-const config = {
-  rules: [
-    {
-      type: "object",
-      required: true,
-      message: "Kérlek, válassz!",
-    },
-  ],
-};
 
-// function onPanelChange(value, mode) {
-//   console.log(value, mode);
-// }
-
-const SelectDateAndTime = (props) => {
+const SelectStartLocation = (props) => {
   //sends form data to parent
   const { setData, setActiveTab } = props;
-  const onFinish = (fieldsValue) => {
-    // Should format date value before submit.
-    const values = {
-      ...fieldsValue,
-      "date-picker": fieldsValue["date-picker"].format("YYYY-MM-DD"),
-      "time-picker": fieldsValue["time-picker"].format("HH:mm:ss"),
-    };
-    setData(values);
-    setActiveTab("2");
+  const onFinish = (values) => {
+    setData((prevState) => {
+      return { ...prevState, ...values };
+    });
+    setActiveTab("3");
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
   };
 
   return (
@@ -54,26 +41,36 @@ const SelectDateAndTime = (props) => {
         name="time_related_controls"
         {...formItemLayout}
         onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
       >
         <Form.Item
           style={{ display: "block" }}
-          name="date-picker"
           label=""
-          {...config}
+          name="city"
+          rules={[
+            {
+              required: true,
+              message: "",
+            },
+          ]}
         >
-          <Calendar
-            fullscreen={false}
-            // onPanelChange={onPanelChange}
-            style={{ width: "100%", maxWidth: 300 }}
+          <Input
+            placeholder="Add meg a település nevét!"
+            style={{ width: 300 }}
           />
         </Form.Item>
         <Form.Item
           style={{ display: "block" }}
-          name="time-picker"
           label=""
-          {...config}
+          name="location"
+          rules={[
+            {
+              required: true,
+              message: "Add meg a helyszínt, ahonnan indulsz!",
+            },
+          ]}
         >
-          <TimePicker format={"HH:mm"} style={{ width: 300 }} />
+          <Input placeholder="Add meg a helyszínt!" style={{ width: 300 }} />
         </Form.Item>
         <Form.Item
           style={{ display: "block" }}
@@ -98,4 +95,4 @@ const SelectDateAndTime = (props) => {
   );
 };
 
-export default SelectDateAndTime;
+export default SelectStartLocation;

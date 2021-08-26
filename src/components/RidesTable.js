@@ -157,7 +157,6 @@ const RidesTable = (props) => {
             columns={columns}
             dataSource={data}
             loading={isLoading}
-            //pagination is not where it supposed to - check API
             pagination={{ position: ["none", "bottomCenter"] }}
             style={{ width: "100%" }}
           />

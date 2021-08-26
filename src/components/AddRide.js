@@ -1,5 +1,8 @@
 // import { useAuth } from "../contexts/AuthContext";
-import SelecDateAndTime from "./selectDateAndTime";
+import SelecDateAndTime from "./SelectDateAndTime";
+import SelectStartLocation from "./SelectStartLocation";
+import AddNumberOfSpaces from "./AddNumberOfSpaces";
+import AddMoreDetails from "./AddMoreDetails";
 import { useState, useEffect } from "react";
 import {
   Row,
@@ -18,7 +21,8 @@ const AddRide = () => {
   }
 
   useEffect(() => {
-    console.log(`Az adat: ${JSON.stringify(data)}`)
+    console.log("Received data so far:");
+    console.log(data)
   }, [data]);
 
   return (
@@ -35,13 +39,13 @@ const AddRide = () => {
               <SelecDateAndTime setData={setData} setActiveTab={setActiveTab}/>
             </TabPane>
             <TabPane tab="2. Honnan indulsz?" key="2">
-            {/* <SelectStartLocation /> */}
+            <SelectStartLocation setData={setData} setActiveTab={setActiveTab}/>
             </TabPane>
             <TabPane tab="3. Hány szabad helyed van?" key="3">
-            {/* <AddNumberOfSpaces /> */}
+            <AddNumberOfSpaces setData={setData} setActiveTab={setActiveTab}/>
             </TabPane>
             <TabPane tab="4. Egyéb" key="4">
-            {/* <AddMoreDetails /> */}
+            <AddMoreDetails setData={setData}/>
             </TabPane>
           </Tabs>
         </Col>

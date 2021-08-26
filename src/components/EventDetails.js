@@ -1,8 +1,10 @@
 import React from "react";
-import { Row, Col } from "antd";
+import { Row, Col, Button } from "antd";
 import { useParams } from "react-router";
 import useFirestore from "../useFirestore";
 import RidesTable from "./RidesTable";
+import { PlusCircleOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 const EventDetails = () => {
   const { id } = useParams();
@@ -19,8 +21,13 @@ const EventDetails = () => {
             </Col>
           </Row>
           <Row>
-            <Col span={24} style={{ textAlign: "center" }}>
-              <h4>Felajánlott helyek</h4>
+            <Col style={{ margin: "auto", paddingBottom: 20 }}>
+              <Link to="/rides/new">
+                <Button type="primary" size="large">
+                  <PlusCircleOutlined />
+                  Szabad hely felajánlása
+                </Button>
+              </Link>
             </Col>
           </Row>
           <Row>

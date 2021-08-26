@@ -13,11 +13,12 @@ const EventsTable = (props) => {
   }));
 
   const columns = [
+    {align: "center"},
     {
       title: "Események",
       dataIndex: "name",
       key: "name",
-      render: (text) => <><Link to={'/events/'+text.split('@@@')[0]}>{text.split('@@@')[1]}</Link>
+      render: (text) => <><Link style={{fontSize: 16}} to={'/events/'+text.split('@@@')[0]}>{text.split('@@@')[1]}</Link>
       <p>{text.split('@@@')[2]}</p></>,
     },
     {
