@@ -18,7 +18,8 @@ export default function Login() {
       await login(values.username, values.password);
       history.push("/");
     } catch (e) {
-      setError(`Sikertelen bejelentkezés: ${e.message}`);
+      // setError(`Sikertelen bejelentkezés: ${e.message}`);
+      setError(`Sikertelen bejelentkezés! Érvénytelen felhasználónév vagy jelszó!`);
       setLoading(false);
     }
   };
@@ -29,7 +30,7 @@ export default function Login() {
 
   return (
     <>
-      {error && <Alert style={{ maxWidth: 300, margin: "auto", marginBottom: 25 }} message={error} type="warning" />}
+      {error && <Alert style={{ maxWidth: 300, margin: "auto", textAlign: "center", marginBottom: 25 }} message={error} type="warning" />}
       <Form
         style={{ maxWidth: 300, margin: "auto" }}
         name="normal_login"
@@ -45,6 +46,7 @@ export default function Login() {
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
             placeholder="Email cím"
+            onChange={() => setError("")}
           />
         </Form.Item>
         <Form.Item

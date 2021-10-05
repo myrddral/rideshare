@@ -3,7 +3,7 @@ import Login from "./Login";
 import Signup from "./Signup";
 import ForgotPassword from "./ForgotPassword";
 import { Row, Col } from "antd";
-// import { Alert } from "antd";
+import { Alert } from "antd";
 import Logo from "../assets/logo-big.png";
 
 export default function Welcome() {
@@ -30,6 +30,9 @@ export default function Welcome() {
       </Row>
       <Row justify="center">
         <Col span={12}>
+          <Row justify="center">
+            <Alert style={{maxWidth: 300, marginBottom: 5}} message="" description={<>user: test@test.com | pass: Test22</>} type="success" />
+          </Row>
           {action === "login" && <Login />}
           {action === "signup" && <Signup />}
           {action === "forgot" && <ForgotPassword />}

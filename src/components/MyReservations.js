@@ -6,6 +6,7 @@ const MyReservations = () => {
       <Row>
         <Col span={24} style={{ textAlign: "center" }}>
           <h2>Foglalásaim</h2>
+          <div>Hamarosan ... </div>
         </Col>
       </Row>
     </>

@@ -40,26 +40,17 @@ const Sidebar = (props) => {
       >
         <div className="logo" />
         <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
-          <Menu.Item
-            key="1"
-            icon={<HomeOutlined />}
-          >
+          <Menu.Item key="1" icon={<HomeOutlined />}>
             <NavLink to="/" className="nav-text">
               Főoldal
             </NavLink>
           </Menu.Item>
-          <Menu.Item
-            key="2"
-            icon={<CarOutlined />}
-          >
+          <Menu.Item key="2" icon={<CarOutlined />}>
             <NavLink to="/reservations" className="nav-text">
               Foglalásaim
             </NavLink>
           </Menu.Item>
-          <Menu.Item
-            key="3"
-            icon={<UserOutlined />}
-          >
+          <Menu.Item key="3" icon={<UserOutlined />}>
             <NavLink to="/profile" className="nav-text">
               Profilom
             </NavLink>

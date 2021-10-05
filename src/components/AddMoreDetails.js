@@ -1,6 +1,6 @@
 const AddMoreDetails = () => {
     return ( <>
-    <h1 style={{textAlign: "center"}}>Köszi nuffy :)</h1>
+    <h1 style={{textAlign: "center"}}>To be continued :)</h1>
     </> );
 }
  

@@ -30,14 +30,12 @@ const RideShare = () => {
           }}
         >
           <img className="logo" src={Logo} alt="logo"/>
-          {/* <div>
-            <small> Bejelentkezve, mint: {currentUser.email}</small>
-          </div> */}
         </Header>
       )}
       <Layout>
         {currentUser !== null && <Sidebar />}
         <Content>
+          <div style={{height: "calc(100vh - 64px)"}} className="container">
           <Switch>
             <PrivateRoute exact path="/" component={Dashboard} />
             <PrivateRoute path="/reservations" component={MyReservations} />
@@ -48,6 +46,7 @@ const RideShare = () => {
             <Route path="/login" component={Welcome} />
             <Route path="*" component={NotFound} />
           </Switch>
+          </div>
         </Content>
         {/* <Footer
           style={{
