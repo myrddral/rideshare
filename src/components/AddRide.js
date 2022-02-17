@@ -1,5 +1,5 @@
 // import { useAuth } from "../contexts/AuthContext";
-import SelecDateAndTime from "./SelectDateAndTime";
+import SelectDateAndTime from "./SelectDateAndTime";
 import SelectStartLocation from "./SelectStartLocation";
 import AddNumberOfSpaces from "./AddNumberOfSpaces";
 import AddMoreDetails from "./AddMoreDetails";
@@ -36,7 +36,7 @@ const AddRide = () => {
         <Col span={24}>
           <Tabs centered defaultActiveKey="1" onChange={callback} activeKey={activeTab}>
             <TabPane tab="1. Mikor indulsz?" key="1">
-              <SelecDateAndTime setData={setData} setActiveTab={setActiveTab}/>
+              <SelectDateAndTime setData={setData} setActiveTab={setActiveTab}/>
             </TabPane>
             <TabPane tab="2. Honnan indulsz?" key="2">
             <SelectStartLocation setData={setData} setActiveTab={setActiveTab}/>
